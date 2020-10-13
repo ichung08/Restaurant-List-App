@@ -21,6 +21,8 @@ restaurant in those situations.
 ## User Stories
 
 - As a user, I want to be able to create a new restaurant list and add it to a list of restaurant lists
+- As a user, I want to be able to select a restaurant list and remove it from a list of restaurant lists
+- As a user, I want to be able to select a restaurant list and view it from a list of restaurant lists
 - As a user, I want to be able to select a restaurant list, and add a restaurant 
 - As a user, I want to be able to select a restaurant list and view a restaurant on it
 - As a user, I want to be able to select a restaurant list, and remove a restaurant from the list

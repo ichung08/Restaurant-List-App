@@ -228,4 +228,151 @@ class RestaurantListTest {
         RestaurantList $ = testRestaurantList.sortRestaurantPrice(1);
         assertEquals(2, $.length());
     }
+
+    @Test
+    void testReturnRandomRestaurantCuisineNone() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setCuisine("vietnamese");
+        r2.setCuisine("western");
+        r3.setCuisine("chinese");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertNull(testRestaurantList.returnRandomRestaurantCuisine("japanese"));
+    }
+
+    @Test
+    void testReturnRandomRestaurantCuisineOne() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setCuisine("vietnamese");
+        r2.setCuisine("western");
+        r3.setCuisine("chinese");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurantCuisine("vietnamese"));
+    }
+
+    @Test
+    void testReturnRandomRestaurantCuisineMany() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setCuisine("chinese");
+        r2.setCuisine("western");
+        r3.setCuisine("chinese");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurantCuisine("chinese"));
+        assertEquals(r2, testRestaurantList.returnRandomRestaurantCuisine("chinese"));
+    }
+
+    @Test
+    void testReturnRandomRestaurantLocationNone() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setLocation("vancouver");
+        r2.setLocation("richmond");
+        r3.setLocation("delta");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertNull(testRestaurantList.returnRandomRestaurantLocation("surrey"));
+    }
+
+    @Test
+    void testReturnRandomRestaurantLocationOne() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setLocation("vancouver");
+        r2.setLocation("richmond");
+        r3.setLocation("delta");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
+    }
+
+    @Test
+    void testReturnRandomRestaurantLocationMany() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setLocation("vancouver");
+        r2.setLocation("vancouver");
+        r3.setLocation("delta");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
+        assertEquals(r2, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
+    }
+
+    @Test
+    void testReturnRandomRestaurantPriceNone() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setPriceRange(1);
+        r2.setPriceRange(2);
+        r3.setPriceRange(1);
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertNull(testRestaurantList.returnRandomRestaurantPrice(4));
+    }
+
+    @Test
+    void testReturnRandomRestaurantPriceOne() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setPriceRange(1);
+        r2.setPriceRange(2);
+        r3.setPriceRange(1);
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r2, testRestaurantList.returnRandomRestaurantPrice(2));
+    }
+
+    @Test
+    void testReturnRandomRestaurantPriceMany() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+        r1.setPriceRange(1);
+        r2.setPriceRange(2);
+        r3.setPriceRange(1);
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurantPrice(1));
+        assertEquals(r3, testRestaurantList.returnRandomRestaurantPrice(1));
+    }
 }

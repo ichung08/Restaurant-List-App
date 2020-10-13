@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 // Represents a list of restaurants
 public class RestaurantList {
@@ -83,6 +84,40 @@ public class RestaurantList {
         }
 
         return priceList;
+
+    }
+
+    public Restaurant returnRandomRestaurantCuisine(String cuisine) {
+        Random rand = new Random();
+        RestaurantList list = sortRestaurantCuisine(cuisine);
+
+        if (list.length() == 0) {
+            return null;
+        }
+        return list.getRestaurant(rand.nextInt(list.length()));
+
+    }
+
+    public Restaurant returnRandomRestaurantLocation(String location) {
+        Random rand = new Random();
+        RestaurantList list = sortRestaurantLocation(location);
+
+        if (list.length() == 0) {
+            return null;
+        }
+
+        return list.getRestaurant(rand.nextInt(list.length()));
+
+    }
+
+    public Restaurant returnRandomRestaurantPrice(int priceRange) {
+        Random rand = new Random();
+        RestaurantList list = sortRestaurantPrice(priceRange);
+
+        if (list.length() == 0) {
+            return null;
+        }
+        return list.getRestaurant(rand.nextInt(list.length()));
 
     }
 
