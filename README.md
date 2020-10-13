@@ -22,7 +22,7 @@ restaurant in those situations.
 
 - As a user, I want to be able to create a new restaurant list and add it to a list of restaurant lists
 - As a user, I want to be able to select a restaurant list, and add a restaurant 
-- As a user, I want to be able to select a restaurant list and view a list of restaurants on it
+- As a user, I want to be able to select a restaurant list and view a restaurant on it
 - As a user, I want to be able to select a restaurant list, and remove a restaurant from the list
 - As a user, I want to be able to select a restaurant list and sort the list by a category (eg. *cuisine, location,* or 
 *price*)
