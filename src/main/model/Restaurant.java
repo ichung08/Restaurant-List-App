@@ -87,7 +87,7 @@ public class Restaurant {
    EFFECTS: sets restaurant cuisine to cuisine
     */
     public void setCuisine(String cuisine) {
-        this.cuisine = cuisine;
+        this.cuisine = cuisine.toLowerCase();
     }
 
     /*
@@ -96,7 +96,7 @@ public class Restaurant {
     EFFECTS: sets restaurant city location to city
      */
     public void setLocation(String city) {
-        this.location = city;
+        this.location = city.toLowerCase();
     }
 
     /*

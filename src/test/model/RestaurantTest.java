@@ -37,14 +37,26 @@ class RestaurantTest {
     }
 
     @Test
-    void testSetCuisine() {
-        testRestaurant.setCuisine("fast food");
+    void testSetCuisineUpper() {
+        testRestaurant.setCuisine("FAST FOOD");
         assertEquals("fast food", testRestaurant.getCuisine());
     }
 
     @Test
+    void testSetCuisine() {
+        testRestaurant.setCuisine("Fast Food");
+        assertEquals("fast food", testRestaurant.getCuisine());
+    }
+
+    @Test
+    void testSetLocationUpper() {
+        testRestaurant.setLocation("RICHMOND");
+        assertEquals("richmond", testRestaurant.getLocation());
+    }
+
+    @Test
     void testSetLocation() {
-        testRestaurant.setLocation("richmond");
+        testRestaurant.setLocation("Richmond");
         assertEquals("richmond", testRestaurant.getLocation());
     }
 

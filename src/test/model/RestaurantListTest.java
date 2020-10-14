@@ -230,6 +230,35 @@ class RestaurantListTest {
     }
 
     @Test
+    void testReturnRandomRestaurantNone() {
+
+        assertNull(testRestaurantList.returnRandomRestaurant());
+    }
+
+    @Test
+    void testReturnRandomRestaurantOne() {
+        Restaurant r1 = new Restaurant("Lotus");
+
+        testRestaurantList.addRestaurant(r1);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurant());
+    }
+
+    @Test
+    void testReturnRandomRestaurantMany() {
+        Restaurant r1 = new Restaurant("Lotus");
+        Restaurant r2 = new Restaurant("Cactus Club Cafe");
+        Restaurant r3 = new Restaurant("Pearl Castle");
+
+        testRestaurantList.addRestaurant(r1);
+        testRestaurantList.addRestaurant(r2);
+        testRestaurantList.addRestaurant(r3);
+
+        assertEquals(r1, testRestaurantList.returnRandomRestaurant());
+        assertEquals(r2, testRestaurantList.returnRandomRestaurant());
+    }
+
+    @Test
     void testReturnRandomRestaurantCuisineNone() {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");

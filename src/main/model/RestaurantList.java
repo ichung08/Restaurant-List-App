@@ -87,37 +87,67 @@ public class RestaurantList {
 
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: returns a random restaurant from a list of restaurants
+    */
+    public Restaurant returnRandomRestaurant() {
+        Random rand = new Random();
+        int num = rand.nextInt(restaurantList.size());
+
+        if (restaurantList.size() == 0) {
+            return null;
+        }
+        return restaurantList.get(num);
+
+    }
+
+    /*
+    MODIFIES: this
+    EFFECTS: returns a random restaurant from a list of restaurants sorted by cuisine
+    */
     public Restaurant returnRandomRestaurantCuisine(String cuisine) {
         Random rand = new Random();
         RestaurantList list = sortRestaurantCuisine(cuisine);
+        int num = rand.nextInt(list.length());
 
         if (list.length() == 0) {
             return null;
         }
-        return list.getRestaurant(rand.nextInt(list.length()));
+        return list.getRestaurant(num);
 
     }
 
+    /*
+     MODIFIES: this
+     EFFECTS: returns a random restaurant from a list of restaurants sorted by location
+     */
     public Restaurant returnRandomRestaurantLocation(String location) {
         Random rand = new Random();
         RestaurantList list = sortRestaurantLocation(location);
+        int num = rand.nextInt(list.length());
 
         if (list.length() == 0) {
             return null;
         }
 
-        return list.getRestaurant(rand.nextInt(list.length()));
+        return list.getRestaurant(num);
 
     }
 
+    /*
+     MODIFIES: this
+     EFFECTS: returns a random restaurant from a list of restaurants sorted by priceRange
+     */
     public Restaurant returnRandomRestaurantPrice(int priceRange) {
         Random rand = new Random();
         RestaurantList list = sortRestaurantPrice(priceRange);
+        int num = rand.nextInt(list.length());
 
         if (list.length() == 0) {
             return null;
         }
-        return list.getRestaurant(rand.nextInt(list.length()));
+        return list.getRestaurant(num);
 
     }
 
