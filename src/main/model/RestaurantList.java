@@ -88,6 +88,7 @@ public class RestaurantList {
     }
 
     /*
+    REQUIRES: restaurantList cannot be empty
     MODIFIES: this
     EFFECTS: returns a random restaurant from a list of restaurants
     */
@@ -95,14 +96,12 @@ public class RestaurantList {
         Random rand = new Random();
         int num = rand.nextInt(restaurantList.size());
 
-        if (restaurantList.size() == 0) {
-            return null;
-        }
         return restaurantList.get(num);
 
     }
 
     /*
+    REQUIRES: restaurantList cannot be empty
     MODIFIES: this
     EFFECTS: returns a random restaurant from a list of restaurants sorted by cuisine
     */
@@ -111,31 +110,26 @@ public class RestaurantList {
         RestaurantList list = sortRestaurantCuisine(cuisine);
         int num = rand.nextInt(list.length());
 
-        if (list.length() == 0) {
-            return null;
-        }
         return list.getRestaurant(num);
 
     }
 
     /*
-     MODIFIES: this
-     EFFECTS: returns a random restaurant from a list of restaurants sorted by location
+    REQUIRES: restaurantList cannot be empty
+    MODIFIES: this
+    EFFECTS: returns a random restaurant from a list of restaurants sorted by location
      */
     public Restaurant returnRandomRestaurantLocation(String location) {
         Random rand = new Random();
         RestaurantList list = sortRestaurantLocation(location);
         int num = rand.nextInt(list.length());
 
-        if (list.length() == 0) {
-            return null;
-        }
-
         return list.getRestaurant(num);
 
     }
 
     /*
+     REQUIRES: restaurantList cannot be empty
      MODIFIES: this
      EFFECTS: returns a random restaurant from a list of restaurants sorted by priceRange
      */
@@ -144,9 +138,6 @@ public class RestaurantList {
         RestaurantList list = sortRestaurantPrice(priceRange);
         int num = rand.nextInt(list.length());
 
-        if (list.length() == 0) {
-            return null;
-        }
         return list.getRestaurant(num);
 
     }

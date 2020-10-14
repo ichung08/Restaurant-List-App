@@ -230,12 +230,6 @@ class RestaurantListTest {
     }
 
     @Test
-    void testReturnRandomRestaurantNone() {
-
-        assertNull(testRestaurantList.returnRandomRestaurant());
-    }
-
-    @Test
     void testReturnRandomRestaurantOne() {
         Restaurant r1 = new Restaurant("Lotus");
 
@@ -256,22 +250,6 @@ class RestaurantListTest {
 
         assertEquals(r1, testRestaurantList.returnRandomRestaurant());
         assertEquals(r2, testRestaurantList.returnRandomRestaurant());
-    }
-
-    @Test
-    void testReturnRandomRestaurantCuisineNone() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setCuisine("vietnamese");
-        r2.setCuisine("western");
-        r3.setCuisine("chinese");
-
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
-
-        assertNull(testRestaurantList.returnRandomRestaurantCuisine("japanese"));
     }
 
     @Test
@@ -308,22 +286,6 @@ class RestaurantListTest {
     }
 
     @Test
-    void testReturnRandomRestaurantLocationNone() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setLocation("vancouver");
-        r2.setLocation("richmond");
-        r3.setLocation("delta");
-
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
-
-        assertNull(testRestaurantList.returnRandomRestaurantLocation("surrey"));
-    }
-
-    @Test
     void testReturnRandomRestaurantLocationOne() {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
@@ -356,21 +318,6 @@ class RestaurantListTest {
         assertEquals(r2, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
     }
 
-    @Test
-    void testReturnRandomRestaurantPriceNone() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setPriceRange(1);
-        r2.setPriceRange(2);
-        r3.setPriceRange(1);
-
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
-
-        assertNull(testRestaurantList.returnRandomRestaurantPrice(4));
-    }
 
     @Test
     void testReturnRandomRestaurantPriceOne() {

@@ -58,6 +58,9 @@ public class RestaurantListApp {
 //                doSortLocation();
 //            case "sp":
 //                doSortPrice();
+//            case "r":
+//                doRandomRestaurant();
+//                break;
             default:
                 System.out.println("Selection not valid...");
         }
