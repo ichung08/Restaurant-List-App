@@ -88,7 +88,6 @@ public class RestaurantListApp {
         System.out.println("\tsp -> sort by price");
         System.out.println("\trand -> random restaurant");
         System.out.println("--------------------------------");
-        System.out.println("\tb -> previous menu");
         System.out.println("\tq -> quit");
         System.out.println("--------------------------------");
     }

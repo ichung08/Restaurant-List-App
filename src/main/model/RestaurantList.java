@@ -38,6 +38,7 @@ public class RestaurantList {
     }
 
     /*
+    REQUIRES: cuisine has non-zero length
     MODIFIES: this
     EFFECTS: returns a list of restaurants of a certain cuisine
      */
@@ -54,6 +55,7 @@ public class RestaurantList {
     }
 
     /*
+    REQUIRES: location has non-zero length
     MODIFIES: this
     EFFECTS: returns a list of restaurants of a certain location
      */
@@ -71,6 +73,7 @@ public class RestaurantList {
     }
 
     /*
+    REQUIRES: priceRange must be >= 1 and <= 4
     MODIFIES: this
     EFFECTS: returns a list of restaurants of a certain princeRange
      */
@@ -101,7 +104,7 @@ public class RestaurantList {
     }
 
     /*
-    REQUIRES: restaurantList cannot be empty
+    REQUIRES: restaurantList cannot be empty and cuisine has non-zero length
     MODIFIES: this
     EFFECTS: returns a random restaurant from a list of restaurants sorted by cuisine
     */
@@ -115,7 +118,7 @@ public class RestaurantList {
     }
 
     /*
-    REQUIRES: restaurantList cannot be empty
+    REQUIRES: restaurantList cannot be empty and location has non-zero length
     MODIFIES: this
     EFFECTS: returns a random restaurant from a list of restaurants sorted by location
      */
@@ -129,7 +132,7 @@ public class RestaurantList {
     }
 
     /*
-     REQUIRES: restaurantList cannot be empty
+     REQUIRES: restaurantList cannot be empty and priceRange is >= 1 and <= 4
      MODIFIES: this
      EFFECTS: returns a random restaurant from a list of restaurants sorted by priceRange
      */
