@@ -33,6 +33,7 @@ public class RestaurantListApp {
             } else {
                 processCommand(command);
             }
+
         }
 
         System.out.println("\nGoodbye!");
@@ -41,28 +42,22 @@ public class RestaurantListApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        switch (command) {
-            case "a":
-                doAdd();
-                break;
-            case "r":
-                doRemove();
-                break;
-            case "v":
-                doView();
-                break;
-            case "sc":
-                doSortCuisine();
-                break;
-//            case "sl":
-//                doSortLocation();
-//            case "sp":
-//                doSortPrice();
-//            case "r":
-//                doRandomRestaurant();
-//                break;
-            default:
-                System.out.println("Selection not valid...");
+        if (command.equals("a")) {
+            doAdd();
+        } else if (command.equals("r")) {
+            doRemove();
+        } else if (command.equals("v")) {
+            doView();
+        } else if (command.equals("sc")) {
+            doSortCuisine();
+        } else if (command.equals("sl")) {
+            doSortLocation();
+        } else if (command.equals("sp")) {
+            doSortPrice();
+        } else if (command.equals("rand")) {
+            doRandomRestaurant();
+        } else {
+            System.out.println("Selection not valid...");
         }
     }
 
@@ -91,7 +86,11 @@ public class RestaurantListApp {
         System.out.println("\tsc -> sort by cuisine");
         System.out.println("\tsl -> sort by location");
         System.out.println("\tsp -> sort by price");
+        System.out.println("\trand -> random restaurant");
+        System.out.println("--------------------------------");
+        System.out.println("\tb -> previous menu");
         System.out.println("\tq -> quit");
+        System.out.println("--------------------------------");
     }
 
     // MODIFIES: this
@@ -142,13 +141,52 @@ public class RestaurantListApp {
 
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: sorts myRestaurantList by a specific cuisine and returns those restaurants
     private void doSortCuisine() {
         System.out.println("Enter a cuisine to sort restaurants by: ");
-        String cuisine = input.next();
+        input.nextLine();
+        String cuisine = input.nextLine();
         RestaurantList cuisineList = myRestaurantList.sortRestaurantCuisine(cuisine);
 
         printRestaurants(cuisineList);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sorts myRestaurantList by a specific location and returns those restaurants
+    private void doSortLocation() {
+        System.out.println("Enter a location to sort restaurants by: ");
+        input.nextLine();
+        String location = input.nextLine();
+        RestaurantList locationList = myRestaurantList.sortRestaurantLocation(location);
+
+        printRestaurants(locationList);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sorts myRestaurantList by a specific price range and returns those restaurants
+    private void doSortPrice() {
+        System.out.println("Enter a price range to sort restaurants by: ");
+        int priceRange = input.nextInt();
+        RestaurantList priceList = myRestaurantList.sortRestaurantPrice(priceRange);
+
+        printRestaurants(priceList);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: returns a random restaurant in myRestaurantList
+    private void doRandomRestaurant() {
+        System.out.println("Searching for a random restaurant...");
+        Restaurant r = myRestaurantList.returnRandomRestaurant();
+
+        System.out.println("Viewing restaurant " + r.getName());
+        System.out.println("Address: " + r.getAddress());
+        System.out.println("Description: " + r.getDescription());
+        System.out.println("Rating (out of 5): " + r.getRating() + " star");
+        System.out.println("Cuisine: " + r.getCuisine());
+        System.out.println("Location: " + r.getLocation());
+        System.out.println("Price Range (1: $1 - $15, 2: $15 - $35, 3: $35 - $60,"
+                + " 4: $60+): " + r.getPriceRange());
     }
 
     // MODIFIES: this

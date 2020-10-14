@@ -248,8 +248,13 @@ class RestaurantListTest {
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r1, testRestaurantList.returnRandomRestaurant());
-        assertEquals(r2, testRestaurantList.returnRandomRestaurant());
+        Restaurant r = testRestaurantList.returnRandomRestaurant();
+        int x = 0;
+
+        while (x < 10) {
+            assertTrue(r instanceof Restaurant);
+            x++;
+        }
     }
 
     @Test
@@ -281,8 +286,13 @@ class RestaurantListTest {
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r1, testRestaurantList.returnRandomRestaurantCuisine("chinese"));
-        assertEquals(r2, testRestaurantList.returnRandomRestaurantCuisine("chinese"));
+        Restaurant r = testRestaurantList.returnRandomRestaurantCuisine("chinese");
+        int x = 0;
+
+        while (x < 10) {
+            assertTrue(r instanceof Restaurant);
+            x++;
+        }
     }
 
     @Test
@@ -314,8 +324,13 @@ class RestaurantListTest {
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r1, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
-        assertEquals(r2, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
+        Restaurant r = testRestaurantList.returnRandomRestaurantLocation("vancouver");
+        int x = 0;
+
+        while (x < 10) {
+            assertTrue(r instanceof Restaurant);
+            x++;
+        }
     }
 
 
@@ -348,7 +363,12 @@ class RestaurantListTest {
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r1, testRestaurantList.returnRandomRestaurantPrice(1));
-        assertEquals(r3, testRestaurantList.returnRandomRestaurantPrice(1));
+        Restaurant r = testRestaurantList.returnRandomRestaurantPrice(1);
+        int x = 0;
+
+        while (x < 10) {
+            assertTrue(r instanceof Restaurant);
+            x++;
+        }
     }
 }
