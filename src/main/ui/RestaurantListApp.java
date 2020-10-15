@@ -225,10 +225,8 @@ public class RestaurantListApp {
         if (rating < 1 || rating > 5) {
             System.out.println("Enter a rating between 1 - 5!");
             rating = input.nextInt();
-            restaurant.setRating(rating);
-        } else {
-            restaurant.setRating(rating);
         }
+        restaurant.setRating(rating);
 
     }
 
@@ -260,11 +258,9 @@ public class RestaurantListApp {
         if (priceRange < 1 || priceRange > 4) {
             System.out.println("Enter a price range between 1 - 4!");
             priceRange = input.nextInt();
-            restaurant.setPriceRange(priceRange);
 
-        } else {
-            restaurant.setPriceRange(priceRange);
         }
+        restaurant.setPriceRange(priceRange);
 
     }
 
