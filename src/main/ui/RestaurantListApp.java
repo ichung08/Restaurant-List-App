@@ -96,7 +96,8 @@ public class RestaurantListApp {
     // EFFECTS: adds a restaurant to myRestaurantList
     private void doAdd() {
         System.out.println("Make a restaurant to add: ");
-        String name = input.next();
+        input.nextLine();
+        String name = input.nextLine();
         Restaurant restaurant = new Restaurant(name);
 
         doAddAddress(restaurant);
@@ -167,9 +168,18 @@ public class RestaurantListApp {
     private void doSortPrice() {
         System.out.println("Enter a price range to sort restaurants by: ");
         int priceRange = input.nextInt();
-        RestaurantList priceList = myRestaurantList.sortRestaurantPrice(priceRange);
 
-        printRestaurants(priceList);
+        if (priceRange < 1 || priceRange > 5) {
+            System.out.println("Enter a price range between 1 - 4!");
+            priceRange = input.nextInt();
+            RestaurantList priceList = myRestaurantList.sortRestaurantPrice(priceRange);
+            printRestaurants(priceList);
+
+        } else {
+            RestaurantList priceList = myRestaurantList.sortRestaurantPrice(priceRange);
+            printRestaurants(priceList);
+        }
+
     }
 
     // MODIFIES: this
@@ -211,7 +221,15 @@ public class RestaurantListApp {
     private void doAddRating(Restaurant restaurant) {
         System.out.println("Add a rating to your restaurant (1, 2, 3, 4, or 5): ");
         int rating = input.nextInt();
-        restaurant.setRating(rating);
+
+        if (rating < 1 || rating > 5) {
+            System.out.println("Enter a rating between 1 - 5!");
+            rating = input.nextInt();
+            restaurant.setRating(rating);
+        } else {
+            restaurant.setRating(rating);
+        }
+
     }
 
     // MODIFIES: this
@@ -238,7 +256,16 @@ public class RestaurantListApp {
         System.out.println("Add a price range tag to your restaurant (1: $1 - $15, 2: $15 - $35, 3: $35 - $60,"
                 + " 4: $60+): ");
         int priceRange = input.nextInt();
-        restaurant.setPriceRange(priceRange);
+
+        if (priceRange < 1 || priceRange > 4) {
+            System.out.println("Enter a price range between 1 - 4!");
+            priceRange = input.nextInt();
+            restaurant.setPriceRange(priceRange);
+
+        } else {
+            restaurant.setPriceRange(priceRange);
+        }
+
     }
 
     // EFFECTS: returns all restaurants in myRestaurantList
