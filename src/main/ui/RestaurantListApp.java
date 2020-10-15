@@ -67,13 +67,26 @@ public class RestaurantListApp {
     private void init() {
         myRestaurantList = new RestaurantList();
         Restaurant r1 = new Restaurant("McDonald's");
+        Restaurant r2 = new Restaurant("Cactus Club");
+
         r1.setAddress("1234 Number 5 Rd. Richmond, British Columbia");
         r1.setDescription("World famous burger and fries!");
         r1.setRating(5);
         r1.setLocation("richmond");
         r1.setPriceRange(1);
         r1.setCuisine("fast food");
+
+
+        r2.setAddress("1234 Number 5 Rd. Richmond, British Columbia");
+        r2.setDescription("dining at night");
+        r2.setRating(5);
+        r2.setLocation("richmond");
+        r2.setPriceRange(1);
+        r2.setCuisine("western");
+
         myRestaurantList.addRestaurant(r1);
+        myRestaurantList.addRestaurant(r2);
+
         input = new Scanner(System.in);
     }
 
@@ -130,7 +143,7 @@ public class RestaurantListApp {
         int num = input.nextInt();
         Restaurant r = myRestaurantList.getRestaurant(num - 1);
 
-        System.out.println("Viewing restaurant " + r.getName());
+        System.out.println("Viewing restaurant: " + r.getName());
         System.out.println("Address: " + r.getAddress());
         System.out.println("Description: " + r.getDescription());
         System.out.println("Rating (out of 5): " + r.getRating() + " star");
@@ -188,7 +201,7 @@ public class RestaurantListApp {
         System.out.println("Searching for a random restaurant...");
         Restaurant r = myRestaurantList.returnRandomRestaurant();
 
-        System.out.println("Viewing restaurant " + r.getName());
+        System.out.println("Viewing restaurant: " + r.getName());
         System.out.println("Address: " + r.getAddress());
         System.out.println("Description: " + r.getDescription());
         System.out.println("Rating (out of 5): " + r.getRating() + " star");
@@ -202,7 +215,6 @@ public class RestaurantListApp {
     // EFFECTS: adds an address to a restaurant
     protected void doAddAddress(Restaurant restaurant) {
         System.out.println("Add an address to your restaurant: ");
-        input.nextLine();
         String address = input.nextLine();
         restaurant.setAddress(address);
     }
@@ -211,7 +223,6 @@ public class RestaurantListApp {
     // EFFECTS: adds a description to a restaurant
     private void doAddDescription(Restaurant restaurant) {
         System.out.println("Add a description to your restaurant: ");
-        input.nextLine();
         String description = input.nextLine();
         restaurant.setDescription(description);
     }
@@ -234,7 +245,6 @@ public class RestaurantListApp {
     // EFFECTS: adds a cuisine tag to a restaurant
     private void doAddCuisine(Restaurant restaurant) {
         System.out.println("Add a cuisine tag to your restaurant: ");
-        input.nextLine();
         String cuisine = input.next();
         restaurant.setCuisine(cuisine);
     }
@@ -243,8 +253,7 @@ public class RestaurantListApp {
     // EFFECTS: adds a location to a restaurant
     private void doAddLocation(Restaurant restaurant) {
         System.out.println("Add a location tag to your restaurant: ");
-        input.nextLine();
-        String location = input.next();
+        String location = input.nextLine();
         restaurant.setLocation(location);
     }
 
