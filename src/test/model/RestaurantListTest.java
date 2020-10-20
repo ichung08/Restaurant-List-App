@@ -10,13 +10,14 @@ class RestaurantListTest {
 
     @BeforeEach
     void runBefore() {
-        testRestaurantList = new RestaurantList();
+        testRestaurantList = new RestaurantList("My Restaurant List");
 
     }
 
     @Test
     void testConstructor() {
         assertEquals(0, testRestaurantList.length());
+        assertEquals("My Restaurant List", testRestaurantList.getName());
     }
 
     @Test

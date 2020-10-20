@@ -1,0 +1,12 @@
+{
+    "name": "My Restaurant List",
+    "restaurants": [{
+        "address": "1234 Number 5 Rd. Richmond, British Columbia",
+        "name": "McDonald's",
+        "rating": 5,
+        "description": "World famous burger and fries!",
+        "cuisine": "fast food",
+        "location": "richmond",
+        "price range": 1
+    }]
+}

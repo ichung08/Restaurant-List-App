@@ -1,15 +1,22 @@
 package model;
 
+import com.sun.org.apache.regexp.internal.RE;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 // Represents a list of restaurants
-public class RestaurantList {
+public class RestaurantList implements Writable {
     private List<Restaurant> restaurantList = new ArrayList<>();
+    private String name;
 
     // EFFECTS:RestaurantList is an empty list with no restaurants
-    public RestaurantList() {
+    public RestaurantList(String name) {
+        this.name = name;
 
     }
 
@@ -22,6 +29,7 @@ public class RestaurantList {
     }
 
     /*
+    REQUIRES: i is <= restaurantList's size
     MODIFIES: this
     EFFECTS: removes a restaurant from the list of index i
      */
@@ -30,11 +38,16 @@ public class RestaurantList {
     }
 
     /*
+    REQUIRES: i is <= restaurantList's size
     MODIFIES: this
     EFFECTS: returns a restaurant from the list of index i
      */
     public Restaurant getRestaurant(int i) {
         return restaurantList.get(i);
+    }
+
+    public String getName() {
+        return name;
     }
 
     /*
@@ -43,7 +56,7 @@ public class RestaurantList {
     EFFECTS: returns a list of restaurants of a certain cuisine
      */
     public RestaurantList sortRestaurantCuisine(String cuisine) {
-        RestaurantList cuisineList = new RestaurantList();
+        RestaurantList cuisineList = new RestaurantList("My Restaurant List");
 
         for (Restaurant r: restaurantList) {
             if (r.getCuisine().equals(cuisine)) {
@@ -60,7 +73,7 @@ public class RestaurantList {
     EFFECTS: returns a list of restaurants of a certain location
      */
     public RestaurantList sortRestaurantLocation(String location) {
-        RestaurantList locationList = new RestaurantList();
+        RestaurantList locationList = new RestaurantList("My Restaurant List");
 
         for (Restaurant r: restaurantList) {
             if (r.getLocation().equals(location)) {
@@ -78,7 +91,7 @@ public class RestaurantList {
     EFFECTS: returns a list of restaurants of a certain princeRange
      */
     public RestaurantList sortRestaurantPrice(int priceRange) {
-        RestaurantList priceList = new RestaurantList();
+        RestaurantList priceList = new RestaurantList("My Restaurant List");
 
         for (Restaurant r: restaurantList) {
             if (r.getPriceRange() == priceRange) {
@@ -149,5 +162,24 @@ public class RestaurantList {
     // EFFECTS: returns an integer that represents the number of restaurants in restaurant list
     public int length() {
         return restaurantList.size();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("restaurants", restaurantsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns restaurants in this restaurant list as a JSON array
+    private JSONArray restaurantsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Restaurant r: restaurantList) {
+            jsonArray.put(r.toJson());
+        }
+
+        return jsonArray;
     }
 }

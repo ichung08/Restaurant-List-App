@@ -20,10 +20,17 @@ restaurant in those situations.
 
 ## User Stories For Grading
 
+### Phase 1
+
 - As a user, I want to be able to create a new restaurant list 
 - As a user, I want to be able to select a restaurant list, and add a restaurant to it
 - As a user, I want to be able to select a restaurant list and view a restaurant on it
 - As a user, I want to be able to select a restaurant list, and remove a restaurant from the list
+
+### Phase 2
+
+- As a user, I want to be able to save my restaurant list to file
+- As a user, I want to be able to load my restaurant list from file
 
 ## User Stories For Additional Features
 - As a user, I want to be able to select a restaurant list and sort the list by a category (eg. *cuisine, location,* or 
@@ -34,5 +41,8 @@ restaurant in those situations.
 - As a user, I want to be able to select a restaurant and assign it a tag (eg. *cuisine, location,* or *price*)
 - As a user, I want to be able to select a restaurant list and generate a random restaurant from it based on a category
 (eg. *cuisine, location,* or *price*)
+- As a user when I select the quit option from the application menu, I want to be reminded to save my to-do list to file
+and have the option to do so or not
+- As a user, when I start the application, I want to be given the option to load my to-do list from file
 
 

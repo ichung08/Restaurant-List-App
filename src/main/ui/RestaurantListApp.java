@@ -65,7 +65,7 @@ public class RestaurantListApp {
     // MODIFIES: this
     // EFFECTS: initializes restaurant list
     private void init() {
-        myRestaurantList = new RestaurantList();
+        myRestaurantList = new RestaurantList("My Restaurant List");
         Restaurant r1 = new Restaurant("McDonald's");
         Restaurant r2 = new Restaurant("Cactus Club");
 
