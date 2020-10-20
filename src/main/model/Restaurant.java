@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a restaurant having a name, address, rating, description and a cuisine, location and price tag
-public class Restaurant {
+public class Restaurant implements Writable {
     private String name;           // restaurant name
     private String address;        // restaurant address
     private int rating;            // restaurant rating (1 - 5)
@@ -108,4 +111,17 @@ public class Restaurant {
         this.priceRange = priceRange;
     }
 
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("address", address);
+        json.put("rating", rating);
+        json.put("description", description);
+        json.put("cuisine", cuisine);
+        json.put("location", location);
+        json.put("price range", priceRange);
+        return json;
+    }
 }
