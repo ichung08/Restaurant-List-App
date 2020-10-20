@@ -2,16 +2,26 @@ package ui;
 
 import model.Restaurant;
 import model.RestaurantList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Restaurant List application
 public class RestaurantListApp {
+    private static final String JSON_STORE = "./data/restaurantList.json";
     private RestaurantList myRestaurantList;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the restaurant list application
     public RestaurantListApp() {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runRestaurantList();
     }
 
@@ -29,7 +39,14 @@ public class RestaurantListApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
+                System.out.println("Type s to save your restaurant list or press q to quit.");
                 keepGoing = false;
+
+//                if (command.equals("s")) {
+//                    processCommand(command);
+//
+//                }
+
             } else {
                 processCommand(command);
             }
@@ -56,6 +73,10 @@ public class RestaurantListApp {
             doSortPrice();
         } else if (command.equals("rand")) {
             doRandomRestaurant();
+        } else if (command.equals("s")) {
+            saveRestaurantList();
+        } else if (command.equals("l")) {
+            loadRestaurantList();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -101,6 +122,8 @@ public class RestaurantListApp {
         System.out.println("\tsp -> sort by price");
         System.out.println("\trand -> random restaurant");
         System.out.println("--------------------------------");
+        System.out.println("\ts -> save restaurant list to file");
+        System.out.println("\tl -> load restaurant list from file");
         System.out.println("\tq -> quit");
         System.out.println("--------------------------------");
     }
@@ -209,6 +232,29 @@ public class RestaurantListApp {
         System.out.println("Location: " + r.getLocation());
         System.out.println("Price Range (1: $1 - $15, 2: $15 - $35, 3: $35 - $60,"
                 + " 4: $60+): " + r.getPriceRange());
+    }
+
+    // EFFECTS: saves the restaurant list to file
+    private void saveRestaurantList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myRestaurantList);
+            jsonWriter.close();
+            System.out.println("Saved" + myRestaurantList.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads restaurant list from file
+    private void loadRestaurantList() {
+        try {
+            myRestaurantList = jsonReader.read();
+            System.out.println("Loaded " + myRestaurantList.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     // MODIFIES: this
