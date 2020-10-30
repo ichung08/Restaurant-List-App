@@ -39,7 +39,7 @@ public class RestaurantListApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
-                System.out.println("Type s to save your restaurant list or press q to quit.");
+
                 keepGoing = false;
 
 //                if (command.equals("s")) {
@@ -299,7 +299,7 @@ public class RestaurantListApp {
     // EFFECTS: adds a location to a restaurant
     private void doAddLocation(Restaurant restaurant) {
         System.out.println("Add a location tag to your restaurant: ");
-        String location = input.nextLine();
+        String location = input.next();
         restaurant.setLocation(location);
     }
 

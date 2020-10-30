@@ -18,6 +18,15 @@
             "cuisine": "western",
             "location": "richmond",
             "price range": 1
+        },
+        {
+            "address": "123",
+            "name": "yum",
+            "rating": 2,
+            "description": "ok good",
+            "cuisine": "western",
+            "location": "richmond",
+            "price range": 3
         }
     ]
 }
