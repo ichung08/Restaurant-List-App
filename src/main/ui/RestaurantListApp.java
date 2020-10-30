@@ -30,28 +30,42 @@ public class RestaurantListApp {
     private void runRestaurantList() {
         boolean keepGoing = true;
         String command;
+//        String start;
+        String exit;
 
         init();
 
         while (keepGoing) {
+//            System.out.println("Would you like to load your restaurant list?
+//            (Press l to load or any key to continue)");
+//            start = input.next();
+//            start = start.toLowerCase();
+
+
+//            if (start.equals("l")) {
+//                processCommand(start);
+
             displayMenu();
             command = input.next();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
+                System.out.println("Do you want to save your restaurant list to file? "
+                        + "(Press s to save or q to quit)");
+                exit = input.next();
+                exit = exit.toLowerCase();
+                processCommand(exit);
 
-                keepGoing = false;
-
-//                if (command.equals("s")) {
-//                    processCommand(command);
-//
-//                }
+                if (exit.equals("s") || exit.equals("q")) {
+                    keepGoing = false;
+                }
 
             } else {
                 processCommand(command);
             }
-
         }
+
+//        }
 
         System.out.println("\nGoodbye!");
     }

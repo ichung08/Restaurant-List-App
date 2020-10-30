@@ -20,13 +20,13 @@
             "price range": 1
         },
         {
-            "address": "123",
-            "name": "yum",
+            "address": "yum str",
+            "name": "1234",
             "rating": 2,
-            "description": "ok good",
-            "cuisine": "western",
-            "location": "richmond",
-            "price range": 3
+            "description": "ok!",
+            "cuisine": "fast",
+            "location": "food",
+            "price range": 2
         }
     ]
 }
