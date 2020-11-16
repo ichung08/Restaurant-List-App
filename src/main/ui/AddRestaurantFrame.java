@@ -1,5 +1,7 @@
 package ui;
 
+import model.Restaurant;
+import ui.RestaurantListGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -28,7 +30,11 @@ public class AddRestaurantFrame {
     private JLabel cuisine;
     private JLabel location;
     private JLabel priceRange;
+    RestaurantListGUI restaurantListGUI = new RestaurantListGUI();
 
+
+    // MODIFIES: this
+    // EFFECTS: creates new add restaurant window
     public AddRestaurantFrame() {
         frame = new JFrame("Add Restaurant");
 
@@ -41,19 +47,24 @@ public class AddRestaurantFrame {
         initFields();
         initLabels();
         initButtons();
+        addListener();
+        cancelListener();
         addToLabelPanel();
 
         panel.add(labelPanel, BorderLayout.CENTER);
 
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setTitle("Restaurant List GUI");
         frame.pack();
         frame.setSize(300, 250);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: initializes labels
+     */
     private void initLabels() {
         name = new JLabel("Name: ");
         name.setHorizontalAlignment(JLabel.RIGHT);
@@ -71,6 +82,10 @@ public class AddRestaurantFrame {
         priceRange.setHorizontalAlignment(JLabel.RIGHT);
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: initializes JTextFields
+     */
     private void initFields() {
         nameField = new JTextField(5);
         addressField = new JTextField(5);
@@ -81,23 +96,62 @@ public class AddRestaurantFrame {
         priceRangeField = new JTextField(5);
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: initializes JButtons
+     */
     private void initButtons() {
         addRestaurant = new JButton("Add");
+        cancel = new JButton("Cancel");
+    }
+
+    /*
+    MODIFIES: this
+    EFFECTS: creates add button action listener
+     */
+    private void addListener() {
         addRestaurant.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Restaurant r = new Restaurant(nameField.getText());
+                r.setAddress(addressField.getText());
+                r.setRating(Integer.parseInt(ratingField.getText()));
+                r.setDescription(descriptionField.getText());
+                r.setCuisine(cuisineField.getText());
+                r.setLocation(locationField.getText());
+                r.setPriceRange(Integer.parseInt(priceRangeField.getText()));
 
-            }
-        });
-        cancel = new JButton("Cancel");
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                restaurantListGUI.restaurantList.addRestaurant(r);
 
+                nameField.setText("");
+                addressField.setText("");
+                ratingField.setText("");
+                descriptionField.setText("");
+                cuisineField.setText("");
+                locationField.setText("");
+                priceRangeField.setText("");
             }
         });
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: creates cancel button action listener
+     */
+    private void cancelListener() {
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+    }
+
+
+    /*
+    MODIFIES: this
+    EFFECTS: adds labels, fields and buttons to labelPanel
+     */
     private void addToLabelPanel() {
         labelPanel.add(name);
         labelPanel.add(nameField);

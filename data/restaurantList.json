@@ -2,31 +2,58 @@
     "name": "My Restaurant List",
     "restaurants": [
         {
-            "address": "1234 Number 5 Rd. Richmond, British Columbia",
+            "address": "",
             "name": "McDonald's",
-            "rating": 5,
-            "description": "World famous burger and fries!",
-            "cuisine": "fast food",
-            "location": "richmond",
-            "price range": 1
+            "rating": 0,
+            "description": "",
+            "cuisine": "",
+            "location": "",
+            "price range": 0
         },
         {
-            "address": "1234 Number 5 Rd. Richmond, British Columbia",
-            "name": "Cactus Club",
-            "rating": 5,
-            "description": "dining at night",
-            "cuisine": "western",
-            "location": "richmond",
-            "price range": 1
+            "address": "",
+            "name": "McDonald's",
+            "rating": 0,
+            "description": "",
+            "cuisine": "",
+            "location": "",
+            "price range": 0
         },
         {
-            "address": "yum str",
-            "name": "1234",
-            "rating": 2,
-            "description": "ok!",
-            "cuisine": "fast",
-            "location": "food",
-            "price range": 2
+            "address": "",
+            "name": "McDonald's",
+            "rating": 0,
+            "description": "",
+            "cuisine": "",
+            "location": "",
+            "price range": 0
+        },
+        {
+            "address": "",
+            "name": "McDonald's",
+            "rating": 0,
+            "description": "",
+            "cuisine": "",
+            "location": "",
+            "price range": 0
+        },
+        {
+            "address": "",
+            "name": "McDonald's",
+            "rating": 0,
+            "description": "",
+            "cuisine": "",
+            "location": "",
+            "price range": 0
+        },
+        {
+            "address": "",
+            "name": "McDonald's",
+            "rating": 0,
+            "description": "",
+            "cuisine": "",
+            "location": "",
+            "price range": 0
         }
     ]
 }
