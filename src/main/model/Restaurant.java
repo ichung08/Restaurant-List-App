@@ -124,4 +124,9 @@ public class Restaurant implements Writable {
         json.put("price range", priceRange);
         return json;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

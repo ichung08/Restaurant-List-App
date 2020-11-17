@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ViewRestaurantFrame {
-    protected RestaurantListGUI restaurantListGUI = new RestaurantListGUI();
+    protected RestaurantListGUI restaurantListGUI;
     protected JPanel viewPanel;
     private JLabel name;
     private JLabel address;
@@ -16,8 +16,12 @@ public class ViewRestaurantFrame {
     private JLabel location;
     private JLabel priceRange;
 
-    public ViewRestaurantFrame(int i) {
+    // MODIFIES: this
+    // EFFECTS: creates frame for view restaurant
+    public ViewRestaurantFrame(int i, RestaurantListGUI restaurantListGUI) {
         JFrame frame = new JFrame("View Restaurant");
+
+        this.restaurantListGUI = restaurantListGUI;
 
         viewPanel = new JPanel();
         viewPanel.setLayout(new GridLayout(7,1));
@@ -26,7 +30,7 @@ public class ViewRestaurantFrame {
         frame.add(viewPanel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
-        frame.setSize(500, 250);
+        frame.setSize(400, 250);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

@@ -6,16 +6,15 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /*
+REFERENCES:
 https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+https://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
  */
 
 public class RestaurantListGUI extends JFrame {
@@ -26,6 +25,8 @@ public class RestaurantListGUI extends JFrame {
     private static final String JSON_STORE = "./data/restaurantList.json";
     private JPanel restaurantListPanel;
     private JPanel buttonsPanel;
+    private JLabel restaurantListTitle;
+    private ImageIcon title;
     private JButton addRestaurantButton;
     private JButton removeRestaurantButton;
     private JButton viewRestaurantButton;
@@ -38,11 +39,19 @@ public class RestaurantListGUI extends JFrame {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
+        addTitle();
         createRestaurantList();
         createRestaurantJList();
         createRestaurantListPanel();
         addButtonsPanel();
         createGui();
+    }
+
+    private void addTitle() {
+        title = new ImageIcon("./data/restaurantBanner.png");
+        restaurantListTitle = new JLabel(title);
+        add(restaurantListTitle, BorderLayout.PAGE_START);
+
     }
 
     /*
@@ -86,9 +95,13 @@ public class RestaurantListGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddRestaurantFrame();
+                callAddRestaurantFrame();
             }
         });
+    }
+
+    private void callAddRestaurantFrame() {
+        new AddRestaurantFrame(this);
     }
 
     /*
@@ -117,6 +130,10 @@ public class RestaurantListGUI extends JFrame {
         });
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: creates viewRestaurantButton and gives it an actionListener to view restaurant
+     */
     private void createViewRestaurantButton() {
         viewRestaurantButton = new JButton("View Restaurant");
         viewRestaurantButton.addActionListener(new ActionListener() {
@@ -124,14 +141,24 @@ public class RestaurantListGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int i = restaurantJList.getSelectedIndex();
 
-                new ViewRestaurantFrame(i);
+                callViewRestaurantFrame(i);
             }
 
         });
     }
-    
 
+    /*
+    MODIFIES: this
+    EFFECTS: calls a new ViewRestaurantFrame
+     */
+    private void callViewRestaurantFrame(int i) {
+        new ViewRestaurantFrame(i, this);
+    }
 
+    /*
+    MODIFIES: this
+    EFFECTS: creates saveRestaurantButton and gives it an actionListener to save a restaurantList
+     */
     private void createSaveRestaurantButton() {
         saveRestaurantButton = new JButton("Save");
         saveRestaurantButton.addActionListener(new ActionListener() {
@@ -149,6 +176,10 @@ public class RestaurantListGUI extends JFrame {
         });
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: creates loadRestaurantButton and gives it an actionListener to load a restaurantList
+     */
     private void createLoadRestaurantButton() {
         loadRestaurantButton = new JButton("Load");
         loadRestaurantButton.addActionListener(new ActionListener() {
@@ -164,7 +195,6 @@ public class RestaurantListGUI extends JFrame {
         });
     }
 
-
     /*
     MODIFIES: this
     EFFECTS: creates restaurantListPanel and adds JList and JScrollPane
@@ -173,7 +203,6 @@ public class RestaurantListGUI extends JFrame {
         restaurantListPanel = new JPanel();
         restaurantListPanel.add(restaurantJList);
         restaurantListPanel.add(new JScrollPane(restaurantJList));
-        restaurantListPanel.setSize(200, 50);
         add(restaurantListPanel, BorderLayout.CENTER);
     }
 
@@ -186,6 +215,7 @@ public class RestaurantListGUI extends JFrame {
         restaurantJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         restaurantJList.setSelectedIndex(0);
         restaurantJList.setVisibleRowCount(5);
+        restaurantJList.setPreferredSize(new Dimension(200, 50));
     }
 
     /*
@@ -195,12 +225,15 @@ public class RestaurantListGUI extends JFrame {
     private void createRestaurantList() {
         restaurantList = new RestaurantList("My Restaurant List");
         Restaurant r1 = new Restaurant("McDonald's");
+        r1.setAddress("1234 Number 5 Rd. Richmond, British Columbia");
+        r1.setDescription("World famous burger and fries!");
+        r1.setRating(5);
+        r1.setLocation("richmond");
+        r1.setPriceRange(1);
+        r1.setCuisine("fast food");
+
         restaurantList.addRestaurant(r1);
-        restaurantList.addRestaurant(r1);
-        restaurantList.addRestaurant(r1);
-        restaurantList.addRestaurant(r1);
-        restaurantList.addRestaurant(r1);
-        restaurantList.addRestaurant(r1);
+
     }
 
     /*
@@ -210,7 +243,7 @@ public class RestaurantListGUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Restaurant List GUI");
         this.pack();
-        this.setSize(600, 200);
+        this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

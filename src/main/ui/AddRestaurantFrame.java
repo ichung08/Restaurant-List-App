@@ -30,13 +30,15 @@ public class AddRestaurantFrame {
     private JLabel cuisine;
     private JLabel location;
     private JLabel priceRange;
-    RestaurantListGUI restaurantListGUI = new RestaurantListGUI();
+    private RestaurantListGUI restaurantListGUI;
 
 
     // MODIFIES: this
     // EFFECTS: creates new add restaurant window
-    public AddRestaurantFrame() {
+    public AddRestaurantFrame(RestaurantListGUI restaurantListGUI) {
         frame = new JFrame("Add Restaurant");
+
+        this.restaurantListGUI = restaurantListGUI;
 
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -130,6 +132,8 @@ public class AddRestaurantFrame {
                 cuisineField.setText("");
                 locationField.setText("");
                 priceRangeField.setText("");
+
+                frame.dispose();
             }
         });
     }
