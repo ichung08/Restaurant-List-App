@@ -38,15 +38,19 @@ public class RestaurantList implements Writable {
         restaurantList.remove(i);
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: returns restaurant list
+     */
     public DefaultListModel<Restaurant> getRestaurantList() {
         return restaurantList;
     }
 
     /*
-        REQUIRES: i is <= restaurantList's size
-        MODIFIES: this
-        EFFECTS: returns a restaurant from the list of index i
-         */
+    REQUIRES: i is <= restaurantList's size
+    MODIFIES: this
+    EFFECTS: returns a restaurant from the list of index i
+     */
     public Restaurant getRestaurant(int i) {
         return restaurantList.get(i);
     }

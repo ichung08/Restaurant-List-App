@@ -66,7 +66,10 @@ class RestaurantTest {
         assertEquals(1, testRestaurant.getPriceRange());
     }
 
-
+    @Test
+    void testToString() {
+        assertEquals("McDonald's", testRestaurant.toString());
+    }
 
 
 

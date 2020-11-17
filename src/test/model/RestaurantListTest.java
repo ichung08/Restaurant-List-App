@@ -72,6 +72,11 @@ class RestaurantListTest {
     }
 
     @Test
+    void testGetRestaurantList() {
+        assertEquals(0, testRestaurantList.getRestaurantList().size());
+    }
+
+    @Test
     void testSortRestaurantCuisineNone() {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
@@ -372,4 +377,6 @@ class RestaurantListTest {
             x++;
         }
     }
+
+
 }
