@@ -11,17 +11,8 @@
             "price range": 1
         },
         {
-            "address": "123",
-            "name": "Lon",
-            "rating": 1,
-            "description": "fine dining",
-            "cuisine": "western",
-            "location": "vancouver",
-            "price range": 3
-        },
-        {
-            "address": "123",
-            "name": "a",
+            "address": "",
+            "name": "1",
             "rating": 1,
             "description": "1",
             "cuisine": "1",

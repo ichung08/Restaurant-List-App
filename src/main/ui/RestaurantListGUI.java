@@ -14,7 +14,6 @@ import java.io.IOException;
 /*
 REFERENCES:
 https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
-https://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
  */
 
 public class RestaurantListGUI extends JFrame {
@@ -186,7 +185,10 @@ public class RestaurantListGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    restaurantList = jsonReader.read();
+                    for (int i = 0; i < jsonReader.read().length(); i++) {
+                        restaurantList.getRestaurantList().addElement(jsonReader.read().getRestaurant(i));
+                    }
+
                     System.out.println("Loaded " + restaurantList.getName() + " from " + JSON_STORE);
                 } catch (IOException e1) {
                     System.out.println("Unable to read from file: " + JSON_STORE);
@@ -213,9 +215,9 @@ public class RestaurantListGUI extends JFrame {
     private void createRestaurantJList() {
         restaurantJList = new JList<Restaurant>(restaurantList.getRestaurantList());
         restaurantJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        restaurantJList.setPreferredSize(new Dimension(200, 100));
         restaurantJList.setSelectedIndex(0);
         restaurantJList.setVisibleRowCount(5);
-        restaurantJList.setPreferredSize(new Dimension(200, 50));
     }
 
     /*
@@ -224,15 +226,15 @@ public class RestaurantListGUI extends JFrame {
      */
     private void createRestaurantList() {
         restaurantList = new RestaurantList("My Restaurant List");
-        Restaurant r1 = new Restaurant("McDonald's");
-        r1.setAddress("1234 Number 5 Rd. Richmond, British Columbia");
-        r1.setDescription("World famous burger and fries!");
-        r1.setRating(5);
-        r1.setLocation("richmond");
-        r1.setPriceRange(1);
-        r1.setCuisine("fast food");
-
-        restaurantList.addRestaurant(r1);
+//        Restaurant r1 = new Restaurant("McDonald's");
+//        r1.setAddress("1234 Number 5 Rd. Richmond, British Columbia");
+//        r1.setDescription("World famous burger and fries!");
+//        r1.setRating(5);
+//        r1.setLocation("richmond");
+//        r1.setPriceRange(1);
+//        r1.setCuisine("fast food");
+//
+//        restaurantList.addRestaurant(r1);
 
     }
 
