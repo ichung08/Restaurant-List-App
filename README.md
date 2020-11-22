@@ -45,4 +45,17 @@ restaurant in those situations.
 and have the option to do so or not
 - As a user, when I start the application, I want to be given the option to load my to-do list from file
 
+### Phase 4
 
+## Phase 4: Task 2
+
+- Robust class design and testing in JsonReader and JsonWriter classes
+
+## Phase 4: Task 3
+
+- I would create an abstract class for RestaurantListGUI, AddRestaurantFrame, and ViewRestaurantFrame because they have a 
+lot of similarities in code
+    - This would reduce duplication in my code and make it easier to read
+- I would extract code in some of my methods for the RestaurantListGUI, AddRestaurantFrame, and ViewRestaurantFrame classes
+and create helper methods 
+    - This would reinforce single responsibility principle and make it easier to read
