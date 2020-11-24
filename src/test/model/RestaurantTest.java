@@ -72,9 +72,19 @@ class RestaurantTest {
     }
 
     @Test
-    void testSetRatingFail() {
+    void testSetRatingFailLow() {
         try {
             testRestaurant.setRating(0);
+            fail("Exception should have been caught");
+        } catch (RatingException e) {
+            // Expected
+        }
+    }
+
+    @Test
+    void testSetRatingFailHigh() {
+        try {
+            testRestaurant.setRating(6);
             fail("Exception should have been caught");
         } catch (RatingException e) {
             // Expected
@@ -152,9 +162,19 @@ class RestaurantTest {
     }
 
     @Test
-    void testSetPriceRangeFail() {
+    void testSetPriceRangeFailHigh() {
         try {
             testRestaurant.setPriceRange(5);
+            fail("Exception should have been caught");
+        } catch (PriceRangeException e) {
+            // Expected
+        }
+    }
+
+    @Test
+    void testSetPriceRangeFailLow() {
+        try {
+            testRestaurant.setPriceRange(0);
             fail("Exception should have been caught");
         } catch (PriceRangeException e) {
             // Expected
