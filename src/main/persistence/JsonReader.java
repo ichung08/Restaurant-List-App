@@ -1,5 +1,8 @@
 package persistence;
 
+import exceptions.NonZeroLengthException;
+import exceptions.PriceRangeException;
+import exceptions.RatingException;
 import model.Restaurant;
 import model.RestaurantList;
 import org.json.JSONArray;
@@ -24,7 +27,7 @@ public class JsonReader {
 
     // EFFECTS: reads RestaurantList from file and returns it
     // throws IOException if an error occurs reading data from file
-    public RestaurantList read() throws IOException {
+    public RestaurantList read() throws IOException, RatingException, PriceRangeException, NonZeroLengthException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseRestaurantList(jsonObject);
@@ -42,7 +45,8 @@ public class JsonReader {
     }
 
     // EFFECTS: parses RestaurantList from JSON object and returns it
-    private RestaurantList parseRestaurantList(JSONObject jsonObject) {
+    private RestaurantList parseRestaurantList(JSONObject jsonObject)
+            throws RatingException, PriceRangeException, NonZeroLengthException {
         String name = jsonObject.getString("name");
         RestaurantList restaurantList = new RestaurantList(name);
         addRestaurants(restaurantList, jsonObject);
@@ -51,7 +55,8 @@ public class JsonReader {
 
     // MODIFIES: RestaurantList
     // EFFECTS: parses restaurants from JSON object and adds them to RestaurantList
-    private void addRestaurants(RestaurantList restaurantList, JSONObject jsonObject) {
+    private void addRestaurants(RestaurantList restaurantList, JSONObject jsonObject)
+            throws RatingException, PriceRangeException, NonZeroLengthException {
         JSONArray jsonArray = jsonObject.getJSONArray("restaurants");
         for (Object json: jsonArray) {
             JSONObject nextRestaurant = (JSONObject) json;
@@ -61,7 +66,8 @@ public class JsonReader {
 
     // MODIFIES: RestaurantList
     // EFFECTS: parses restaurant from JSON object and adds it to RestaurantList
-    private void addRestaurant(RestaurantList restaurantList, JSONObject jsonObject) {
+    private void addRestaurant(RestaurantList restaurantList, JSONObject jsonObject)
+            throws NonZeroLengthException, RatingException, PriceRangeException {
         String name = jsonObject.getString("name");
         String address = jsonObject.getString("address");
         int rating = jsonObject.getInt("rating");

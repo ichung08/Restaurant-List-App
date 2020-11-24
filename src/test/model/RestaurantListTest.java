@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.NonZeroLengthException;
+import exceptions.PriceRangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -81,17 +83,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setCuisine("vietnamese");
-        r2.setCuisine("western");
-        r3.setCuisine("chinese");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+        try {
+            r1.setCuisine("vietnamese");
+            r2.setCuisine("western");
+            r3.setCuisine("chinese");
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList Japanese = testRestaurantList.sortRestaurantCuisine("japanese");
-        assertEquals(0, Japanese.length());
-
+            RestaurantList Japanese = testRestaurantList.sortRestaurantCuisine("japanese");
+            assertEquals(0, Japanese.length());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -99,17 +104,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setCuisine("vietnamese");
-        r2.setCuisine("western");
-        r3.setCuisine("chinese");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+        try {
+            r3.setCuisine("chinese");
+            r1.setCuisine("vietnamese");
+            r2.setCuisine("western");
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList Chinese = testRestaurantList.sortRestaurantCuisine("chinese");
-        assertEquals(1, Chinese.length());
-
+            RestaurantList Chinese = testRestaurantList.sortRestaurantCuisine("chinese");
+            assertEquals(1, Chinese.length());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -117,16 +125,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setCuisine("chinese");
-        r2.setCuisine("western");
-        r3.setCuisine("chinese");
+        try {
+            r1.setCuisine("chinese");
+            r2.setCuisine("western");
+            r3.setCuisine("chinese");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList Chinese = testRestaurantList.sortRestaurantCuisine("chinese");
-        assertEquals(2, Chinese.length());
+            RestaurantList Chinese = testRestaurantList.sortRestaurantCuisine("chinese");
+            assertEquals(2, Chinese.length());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -134,17 +146,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setLocation("vancouver");
-        r2.setLocation("richmond");
-        r3.setLocation("delta");
+        try {
+            r1.setLocation("vancouver");
+            r2.setLocation("richmond");
+            r3.setLocation("delta");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList Surrey = testRestaurantList.sortRestaurantLocation("surrey");
-        assertEquals(0, Surrey.length());
-
+            RestaurantList Surrey = testRestaurantList.sortRestaurantLocation("surrey");
+            assertEquals(0, Surrey.length());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -152,17 +167,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setLocation("vancouver");
-        r2.setLocation("richmond");
-        r3.setLocation("delta");
+        try {
+            r1.setLocation("vancouver");
+            r2.setLocation("richmond");
+            r3.setLocation("delta");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList Richmond = testRestaurantList.sortRestaurantLocation("richmond");
-        assertEquals(1, Richmond.length());
-
+            RestaurantList Richmond = testRestaurantList.sortRestaurantLocation("richmond");
+            assertEquals(1, Richmond.length());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -170,16 +188,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setLocation("vancouver");
-        r2.setLocation("richmond");
-        r3.setLocation("richmond");
+        try {
+            r1.setLocation("vancouver");
+            r2.setLocation("richmond");
+            r3.setLocation("richmond");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList Richmond = testRestaurantList.sortRestaurantLocation("richmond");
-        assertEquals(2, Richmond.length());
+            RestaurantList Richmond = testRestaurantList.sortRestaurantLocation("richmond");
+            assertEquals(2, Richmond.length());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -187,16 +209,21 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setPriceRange(1);
-        r2.setPriceRange(2);
-        r3.setPriceRange(1);
+        try {
+            r1.setPriceRange(1);
+            r2.setPriceRange(2);
+            r3.setPriceRange(1);
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList $ = testRestaurantList.sortRestaurantPrice(3);
-        assertEquals(0, $.length());
+            RestaurantList $ = testRestaurantList.sortRestaurantPrice(3);
+            assertEquals(0, $.length());
+        } catch (PriceRangeException e) {
+            fail("Exception should not have been caught");
+        }
+
 
     }
 
@@ -205,17 +232,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setPriceRange(1);
-        r2.setPriceRange(2);
-        r3.setPriceRange(1);
+        try {
+            r1.setPriceRange(1);
+            r2.setPriceRange(2);
+            r3.setPriceRange(1);
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList $ = testRestaurantList.sortRestaurantPrice(2);
-        assertEquals(1, $.length());
-
+            RestaurantList $ = testRestaurantList.sortRestaurantPrice(2);
+            assertEquals(1, $.length());
+        } catch (PriceRangeException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -223,16 +253,20 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setPriceRange(1);
-        r2.setPriceRange(2);
-        r3.setPriceRange(1);
+        try {
+            r1.setPriceRange(1);
+            r2.setPriceRange(2);
+            r3.setPriceRange(1);
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        RestaurantList $ = testRestaurantList.sortRestaurantPrice(1);
-        assertEquals(2, $.length());
+            RestaurantList $ = testRestaurantList.sortRestaurantPrice(1);
+            assertEquals(2, $.length());
+        } catch (PriceRangeException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -268,15 +302,19 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setCuisine("vietnamese");
-        r2.setCuisine("western");
-        r3.setCuisine("chinese");
+        try {
+            r1.setCuisine("vietnamese");
+            r2.setCuisine("western");
+            r3.setCuisine("chinese");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r1, testRestaurantList.returnRandomRestaurantCuisine("vietnamese"));
+            assertEquals(r1, testRestaurantList.returnRandomRestaurantCuisine("vietnamese"));
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -284,20 +322,24 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setCuisine("chinese");
-        r2.setCuisine("western");
-        r3.setCuisine("chinese");
+        try {
+            r1.setCuisine("chinese");
+            r2.setCuisine("western");
+            r3.setCuisine("chinese");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        Restaurant r = testRestaurantList.returnRandomRestaurantCuisine("chinese");
-        int x = 0;
+            Restaurant r = testRestaurantList.returnRandomRestaurantCuisine("chinese");
+            int x = 0;
 
-        while (x < 10) {
-            assertTrue(r instanceof Restaurant);
-            x++;
+            while (x < 10) {
+                assertTrue(r instanceof Restaurant);
+                x++;
+            }
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
         }
     }
 
@@ -306,15 +348,19 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setLocation("vancouver");
-        r2.setLocation("richmond");
-        r3.setLocation("delta");
+        try {
+            r1.setLocation("vancouver");
+            r2.setLocation("richmond");
+            r3.setLocation("delta");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r1, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
+            assertEquals(r1, testRestaurantList.returnRandomRestaurantLocation("vancouver"));
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -322,20 +368,24 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setLocation("vancouver");
-        r2.setLocation("vancouver");
-        r3.setLocation("delta");
+        try {
+            r1.setLocation("vancouver");
+            r2.setLocation("vancouver");
+            r3.setLocation("delta");
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        Restaurant r = testRestaurantList.returnRandomRestaurantLocation("vancouver");
-        int x = 0;
+            Restaurant r = testRestaurantList.returnRandomRestaurantLocation("vancouver");
+            int x = 0;
 
-        while (x < 10) {
-            assertTrue(r instanceof Restaurant);
-            x++;
+            while (x < 10) {
+                assertTrue(r instanceof Restaurant);
+                x++;
+            }
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
         }
     }
 
@@ -345,15 +395,19 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setPriceRange(1);
-        r2.setPriceRange(2);
-        r3.setPriceRange(1);
+        try {
+            r1.setPriceRange(1);
+            r2.setPriceRange(2);
+            r3.setPriceRange(1);
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        assertEquals(r2, testRestaurantList.returnRandomRestaurantPrice(2));
+            assertEquals(r2, testRestaurantList.returnRandomRestaurantPrice(2));
+        } catch (PriceRangeException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -361,22 +415,24 @@ class RestaurantListTest {
         Restaurant r1 = new Restaurant("Lotus");
         Restaurant r2 = new Restaurant("Cactus Club Cafe");
         Restaurant r3 = new Restaurant("Pearl Castle");
-        r1.setPriceRange(1);
-        r2.setPriceRange(2);
-        r3.setPriceRange(1);
+        try {
+            r1.setPriceRange(1);
+            r2.setPriceRange(2);
+            r3.setPriceRange(1);
 
-        testRestaurantList.addRestaurant(r1);
-        testRestaurantList.addRestaurant(r2);
-        testRestaurantList.addRestaurant(r3);
+            testRestaurantList.addRestaurant(r1);
+            testRestaurantList.addRestaurant(r2);
+            testRestaurantList.addRestaurant(r3);
 
-        Restaurant r = testRestaurantList.returnRandomRestaurantPrice(1);
-        int x = 0;
+            Restaurant r = testRestaurantList.returnRandomRestaurantPrice(1);
+            int x = 0;
 
-        while (x < 10) {
-            assertTrue(r instanceof Restaurant);
-            x++;
+            while (x < 10) {
+                assertTrue(r instanceof Restaurant);
+                x++;
+            }
+        } catch (PriceRangeException e) {
+            fail("Exception should not have been caught");
         }
     }
-
-
 }

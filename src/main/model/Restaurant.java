@@ -1,5 +1,8 @@
 package model;
 
+import exceptions.NonZeroLengthException;
+import exceptions.PriceRangeException;
+import exceptions.RatingException;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -61,8 +64,10 @@ public class Restaurant implements Writable {
     MODIFIES: this
     EFFECTS: sets restaurant address to address
      */
-
-    public void setAddress(String address) {
+    public void setAddress(String address) throws NonZeroLengthException {
+        if (address.length() == 0) {
+            throw new NonZeroLengthException();
+        }
         this.address = address;
     }
 
@@ -71,7 +76,10 @@ public class Restaurant implements Writable {
     MODIFIES: this
     EFFECTS: sets restaurant description to description
      */
-    public void setDescription(String description) {
+    public void setDescription(String description) throws NonZeroLengthException {
+        if (description.length() == 0) {
+            throw new NonZeroLengthException();
+        }
         this.description = description;
     }
 
@@ -80,7 +88,10 @@ public class Restaurant implements Writable {
     MODIFIES: this
     EFFECTS: sets restaurant rating to rating
      */
-    public void setRating(int rating) {
+    public void setRating(int rating) throws RatingException {
+        if (rating < 1 || rating > 5) {
+            throw new RatingException();
+        }
         this.rating = rating;
     }
 
@@ -89,7 +100,10 @@ public class Restaurant implements Writable {
    MODIFIES: this
    EFFECTS: sets restaurant cuisine to cuisine
     */
-    public void setCuisine(String cuisine) {
+    public void setCuisine(String cuisine) throws NonZeroLengthException {
+        if (cuisine.length() == 0) {
+            throw new NonZeroLengthException();
+        }
         this.cuisine = cuisine.toLowerCase();
     }
 
@@ -98,7 +112,10 @@ public class Restaurant implements Writable {
     MODIFIES: this
     EFFECTS: sets restaurant city location to city
      */
-    public void setLocation(String city) {
+    public void setLocation(String city) throws NonZeroLengthException {
+        if (city.length() == 0) {
+            throw new NonZeroLengthException();
+        }
         this.location = city.toLowerCase();
     }
 
@@ -107,7 +124,10 @@ public class Restaurant implements Writable {
     MODIFIES: this
     EFFECTS: sets restaurant priceRange to priceRange
      */
-    public void setPriceRange(int priceRange) {
+    public void setPriceRange(int priceRange) throws PriceRangeException {
+        if (priceRange < 1 || priceRange > 4) {
+            throw new PriceRangeException();
+        }
         this.priceRange = priceRange;
     }
 

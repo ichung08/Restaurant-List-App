@@ -32,7 +32,7 @@ public class RestaurantListGUI extends JFrame {
     private JButton saveRestaurantButton;
     private JButton loadRestaurantButton;
 
-
+    // MODIFIES: this
     // EFFECTS: creates restaurantList GUI
     public RestaurantListGUI() {
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -46,11 +46,14 @@ public class RestaurantListGUI extends JFrame {
         createGui();
     }
 
+    /*
+    MODIFIES: this
+    EFFECTS: adds image to GUI
+     */
     private void addTitle() {
         title = new ImageIcon("./data/restaurantBanner.png");
         restaurantListTitle = new JLabel(title);
         add(restaurantListTitle, BorderLayout.PAGE_START);
-
     }
 
     /*
@@ -169,7 +172,7 @@ public class RestaurantListGUI extends JFrame {
                     jsonWriter.close();
                     System.out.println("Saved" + restaurantList.getName() + " to " + JSON_STORE);
                 } catch (FileNotFoundException e1) {
-                    System.out.println("Unable to write to file: " + JSON_STORE);
+                    JOptionPane.showMessageDialog(null, "Unable to write to file: " + JSON_STORE);
                 }
             }
         });
@@ -188,10 +191,12 @@ public class RestaurantListGUI extends JFrame {
                     for (int i = 0; i < jsonReader.read().length(); i++) {
                         restaurantList.getRestaurantList().addElement(jsonReader.read().getRestaurant(i));
                     }
-
                     System.out.println("Loaded " + restaurantList.getName() + " from " + JSON_STORE);
                 } catch (IOException e1) {
-                    System.out.println("Unable to read from file: " + JSON_STORE);
+                    JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE);
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,
+                            "Error: Restaurant field entered incorrectly");
                 }
             }
         });
@@ -239,6 +244,7 @@ public class RestaurantListGUI extends JFrame {
     }
 
     /*
+    MODIFIES: this
     EFFECTS: sets up and creates GUI for display
      */
     private void createGui() {

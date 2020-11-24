@@ -1,13 +1,13 @@
 package ui;
 
+import exceptions.NonZeroLengthException;
+import exceptions.PriceRangeException;
+import exceptions.RatingException;
 import model.Restaurant;
-import ui.RestaurantListGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
-import java.security.acl.Group;
 
 // https://stackoverflow.com/questions/15513380/how-to-open-a-new-window-by-clicking-a-button
 public class AddRestaurantFrame {
@@ -116,26 +116,42 @@ public class AddRestaurantFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Restaurant r = new Restaurant(nameField.getText());
-                r.setAddress(addressField.getText());
-                r.setRating(Integer.parseInt(ratingField.getText()));
-                r.setDescription(descriptionField.getText());
-                r.setCuisine(cuisineField.getText());
-                r.setLocation(locationField.getText());
-                r.setPriceRange(Integer.parseInt(priceRangeField.getText()));
+                try {
+                    r.setAddress(addressField.getText());
+                    r.setRating(Integer.parseInt(ratingField.getText()));
+                    r.setDescription(descriptionField.getText());
+                    r.setCuisine(cuisineField.getText());
+                    r.setLocation(locationField.getText());
+                    r.setPriceRange(Integer.parseInt(priceRangeField.getText()));
 
-                restaurantListGUI.restaurantList.addRestaurant(r);
+                    restaurantListGUI.restaurantList.addRestaurant(r);
 
-                nameField.setText("");
-                addressField.setText("");
-                ratingField.setText("");
-                descriptionField.setText("");
-                cuisineField.setText("");
-                locationField.setText("");
-                priceRangeField.setText("");
-
-                frame.dispose();
+                    clearRestaurantText();
+                } catch (NonZeroLengthException e1) {
+                    JOptionPane.showMessageDialog(null, "Error: Enter a non-zero length string");
+                } catch (PriceRangeException e1) {
+                    JOptionPane.showMessageDialog(null, "Error: Enter an integer between 1 and 4");
+                } catch (RatingException e1) {
+                    JOptionPane.showMessageDialog(null, "Error: Enter an integer between 1 and 5");
+                }
             }
         });
+    }
+
+    /*
+    MODIFIES: this
+    EFFECTS: sets text fields to empty string
+     */
+    private void clearRestaurantText() {
+        nameField.setText("");
+        addressField.setText("");
+        ratingField.setText("");
+        descriptionField.setText("");
+        cuisineField.setText("");
+        locationField.setText("");
+        priceRangeField.setText("");
+
+        frame.dispose();
     }
 
     /*

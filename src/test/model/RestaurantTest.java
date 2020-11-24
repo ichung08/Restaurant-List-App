@@ -1,5 +1,8 @@
 package model;
 
+import exceptions.NonZeroLengthException;
+import exceptions.PriceRangeException;
+import exceptions.RatingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,50 +23,142 @@ class RestaurantTest {
 
     @Test
     void testSetAddress() {
-        testRestaurant.setAddress("123 Number 5 Road Richmond, British Columbia");
-        assertEquals("123 Number 5 Road Richmond, British Columbia", testRestaurant.getAddress());
+        try {
+            testRestaurant.setAddress("123 Number 5 Road Richmond, British Columbia");
+            assertEquals("123 Number 5 Road Richmond, British Columbia", testRestaurant.getAddress());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
+    }
+
+    @Test
+    void testSetAddressFail() {
+        try {
+            testRestaurant.setAddress("");
+            fail("Exception should have been caught");
+        } catch (NonZeroLengthException e) {
+            // Expected
+        }
     }
 
     @Test
     void testSetDescription() {
-        testRestaurant.setDescription("World famous burger and fries!");
-        assertEquals("World famous burger and fries!", testRestaurant.getDescription());
+        try {
+            testRestaurant.setDescription("World famous burger and fries!");
+            assertEquals("World famous burger and fries!", testRestaurant.getDescription());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
+    }
+
+    @Test
+    void testSetDescriptionFail() {
+        try {
+            testRestaurant.setDescription("");
+            fail("Exception should have been caught");
+        } catch (NonZeroLengthException e) {
+            // Expected
+        }
     }
 
     @Test
     void testSetRating() {
-        testRestaurant.setRating(5);
-        assertEquals(5, testRestaurant.getRating());
+        try {
+            testRestaurant.setRating(5);
+            assertEquals(5, testRestaurant.getRating());
+        } catch (RatingException e) {
+            fail("Exception should not have been caught");
+        }
+    }
+
+    @Test
+    void testSetRatingFail() {
+        try {
+            testRestaurant.setRating(0);
+            fail("Exception should have been caught");
+        } catch (RatingException e) {
+            // Expected
+        }
     }
 
     @Test
     void testSetCuisineUpper() {
-        testRestaurant.setCuisine("FAST FOOD");
-        assertEquals("fast food", testRestaurant.getCuisine());
+        try {
+            testRestaurant.setCuisine("FAST FOOD");
+            assertEquals("fast food", testRestaurant.getCuisine());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
     void testSetCuisine() {
-        testRestaurant.setCuisine("Fast Food");
-        assertEquals("fast food", testRestaurant.getCuisine());
+        try {
+            testRestaurant.setCuisine("Fast Food");
+            assertEquals("fast food", testRestaurant.getCuisine());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
+    }
+
+    @Test
+    void testSetCuisineFail() {
+        try {
+            testRestaurant.setCuisine("");
+            fail("Exception should have been caught");
+        } catch (NonZeroLengthException e) {
+            // Expected
+        }
     }
 
     @Test
     void testSetLocationUpper() {
-        testRestaurant.setLocation("RICHMOND");
-        assertEquals("richmond", testRestaurant.getLocation());
+        try {
+            testRestaurant.setLocation("RICHMOND");
+            assertEquals("richmond", testRestaurant.getLocation());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
     void testSetLocation() {
-        testRestaurant.setLocation("Richmond");
-        assertEquals("richmond", testRestaurant.getLocation());
+        try {
+            testRestaurant.setLocation("Richmond");
+            assertEquals("richmond", testRestaurant.getLocation());
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
+    }
+
+    @Test
+    void testSetLocationFail() {
+        try {
+            testRestaurant.setLocation("");
+            fail("Exception should have been caught");
+        } catch (NonZeroLengthException e) {
+            // Expected
+        }
     }
 
     @Test
     void testSetPriceRange() {
-        testRestaurant.setPriceRange(1);
-        assertEquals(1, testRestaurant.getPriceRange());
+        try {
+            testRestaurant.setPriceRange(1);
+            assertEquals(1, testRestaurant.getPriceRange());
+        } catch (PriceRangeException e) {
+            fail("Exception should not have been caught");
+        }
+    }
+
+    @Test
+    void testSetPriceRangeFail() {
+        try {
+            testRestaurant.setPriceRange(5);
+            fail("Exception should have been caught");
+        } catch (PriceRangeException e) {
+            // Expected
+        }
     }
 
     @Test

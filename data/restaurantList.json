@@ -1,23 +1,12 @@
 {
     "name": "My Restaurant List",
-    "restaurants": [
-        {
-            "address": "1234 Number 5 Rd. Richmond, British Columbia",
-            "name": "McDonald's",
-            "rating": 5,
-            "description": "World famous burger and fries!",
-            "cuisine": "fast food",
-            "location": "richmond",
-            "price range": 1
-        },
-        {
-            "address": "",
-            "name": "1",
-            "rating": 1,
-            "description": "1",
-            "cuisine": "1",
-            "location": "1",
-            "price range": 1
-        }
-    ]
+    "restaurants": [{
+        "address": "123",
+        "name": "yum",
+        "rating": 1,
+        "description": "okok",
+        "cuisine": "chinese",
+        "location": "van",
+        "price range": 2
+    }]
 }

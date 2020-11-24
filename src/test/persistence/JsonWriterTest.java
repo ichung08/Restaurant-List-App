@@ -38,7 +38,7 @@ public class JsonWriterTest extends JsonTest {
             restaurantList = reader.read();
             assertEquals("My Restaurant List", restaurantList.getName());
             assertEquals(0, restaurantList.length());
-        } catch (IOException e) {
+        } catch (Exception e) {
             fail("IOException should not have been thrown");
         }
     }
@@ -75,7 +75,7 @@ public class JsonWriterTest extends JsonTest {
                             1,
                                     restaurantList.getRestaurant(0));
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             fail("Exception should not have been thrown");
         }
     }

@@ -16,7 +16,7 @@ public class JsonReaderTest extends JsonTest {
         try {
             RestaurantList restaurantList = reader.read();
             fail("IOException expected");
-        } catch (IOException e) {
+        } catch (Exception e) {
             // pass
         }
     }
@@ -28,7 +28,7 @@ public class JsonReaderTest extends JsonTest {
             RestaurantList restaurantList = reader.read();
             assertEquals("My Restaurant List", restaurantList.getName());
             assertEquals(0, restaurantList.length());
-        } catch (IOException e) {
+        } catch (Exception e) {
             fail("Couldn't read from file");
         }
     }
@@ -48,7 +48,7 @@ public class JsonReaderTest extends JsonTest {
                     "richmond",
                     1,
                     restaurantList.getRestaurant(0));
-        } catch (IOException e) {
+        } catch (Exception e) {
             fail("Couldn't read from file");
         }
     }

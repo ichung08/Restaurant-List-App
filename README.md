@@ -49,7 +49,7 @@ and have the option to do so or not
 
 ## Phase 4: Task 2
 
-- Robust class design and testing in JsonReader and JsonWriter classes
+- Robust class design and testing in Restaurant class
 
 ## Phase 4: Task 3
 
