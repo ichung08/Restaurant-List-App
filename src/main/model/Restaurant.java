@@ -18,10 +18,13 @@ public class Restaurant implements Writable {
     // 4: $60+)
 
     /*
-    REQUIRES: restaurantName has a non-zero length
-    EFFECTS: name is set to restaurantName
+    EFFECTS: if restaurantName has a non-zero length, throws NonZeroLengthException
+             otherwise, name is set to restaurantName
      */
-    public Restaurant(String restaurantName) {
+    public Restaurant(String restaurantName) throws NonZeroLengthException {
+        if (restaurantName.length() == 0) {
+            throw new NonZeroLengthException();
+        }
         name = restaurantName;
         address = "";
         rating = 0;
@@ -60,9 +63,9 @@ public class Restaurant implements Writable {
     }
 
     /*
-    REQUIRES: address has a non-zero length
     MODIFIES: this
-    EFFECTS: sets restaurant address to address
+    EFFECTS: if address has a non-zero length, throws NonZeroLengthException
+             otherwise, sets restaurant address to address
      */
     public void setAddress(String address) throws NonZeroLengthException {
         if (address.length() == 0) {
@@ -72,9 +75,9 @@ public class Restaurant implements Writable {
     }
 
     /*
-    REQUIRES: description has a non-zero length
     MODIFIES: this
-    EFFECTS: sets restaurant description to description
+    EFFECTS: if description has a non-zero length, throws NonZeroLengthException
+             otherwise, sets restaurant description to description
      */
     public void setDescription(String description) throws NonZeroLengthException {
         if (description.length() == 0) {
@@ -84,9 +87,9 @@ public class Restaurant implements Writable {
     }
 
     /*
-    REQUIRES: rating is >= 1 and <=5
     MODIFIES: this
-    EFFECTS: sets restaurant rating to rating
+    EFFECTS: if rating is >=1 and <= 5, throws RatingException
+             otherwise, sets restaurant rating to rating
      */
     public void setRating(int rating) throws RatingException {
         if (rating < 1 || rating > 5) {
@@ -96,9 +99,9 @@ public class Restaurant implements Writable {
     }
 
     /*
-   REQUIRES: cuisine has a non-zero length
    MODIFIES: this
-   EFFECTS: sets restaurant cuisine to cuisine
+   EFFECTS: if cuisine has a non-zero length, throws NonZeroLengthException
+            otherwise, sets restaurant cuisine to cuisine
     */
     public void setCuisine(String cuisine) throws NonZeroLengthException {
         if (cuisine.length() == 0) {
@@ -108,9 +111,9 @@ public class Restaurant implements Writable {
     }
 
     /*
-    REQUIRES: city has a non-zero length
     MODIFIES: this
-    EFFECTS: sets restaurant city location to city
+    EFFECTS: if city has a non-zero length, throws NonZeroLengthException
+             otherwise, sets restaurant city location to city
      */
     public void setLocation(String city) throws NonZeroLengthException {
         if (city.length() == 0) {
@@ -120,9 +123,9 @@ public class Restaurant implements Writable {
     }
 
     /*
-    REQUIRES: price is >= 1 and <= 4
     MODIFIES: this
-    EFFECTS: sets restaurant priceRange to priceRange
+    EFFECTS: if price is >= 1 and <= 4, throws PriceRangeException
+             otherwise, sets restaurant priceRange to priceRange
      */
     public void setPriceRange(int priceRange) throws PriceRangeException {
         if (priceRange < 1 || priceRange > 4) {

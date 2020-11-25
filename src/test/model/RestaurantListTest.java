@@ -9,11 +9,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantListTest {
     private RestaurantList testRestaurantList;
+    private Restaurant r1;
+    private Restaurant r2;
+    private Restaurant r3;
 
     @BeforeEach
     void runBefore() {
         testRestaurantList = new RestaurantList("My Restaurant List");
-
+        try {
+            r1 = new Restaurant("Lotus");
+            r2 = new Restaurant("Cactus Club Cafe");
+            r3 = new Restaurant("Pearl Castle");
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been caught");
+        }
     }
 
     @Test
@@ -24,15 +33,12 @@ class RestaurantListTest {
 
     @Test
     void testAddRestaurant() {
-        Restaurant r1 = new Restaurant("Lotus");
         testRestaurantList.addRestaurant(r1);
         assertEquals(1, testRestaurantList.length());
     }
 
     @Test
     void testRemoveRestaurantOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-
         testRestaurantList.addRestaurant(r1);
         testRestaurantList.removeRestaurant(0);
 
@@ -41,10 +47,6 @@ class RestaurantListTest {
 
     @Test
     void testRemoveRestaurantMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-
         testRestaurantList.addRestaurant(r1);
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
@@ -55,18 +57,12 @@ class RestaurantListTest {
 
     @Test
     void testGetRestaurantOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-
         testRestaurantList.addRestaurant(r1);
         assertEquals(r1, testRestaurantList.getRestaurant(0));
     }
 
     @Test
     void testGetRestaurantMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-
         testRestaurantList.addRestaurant(r1);
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
@@ -80,10 +76,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantCuisineNone() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-
         try {
             r1.setCuisine("vietnamese");
             r2.setCuisine("western");
@@ -101,10 +93,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantCuisineOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-
         try {
             r3.setCuisine("chinese");
             r1.setCuisine("vietnamese");
@@ -122,9 +110,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantCuisineMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setCuisine("chinese");
             r2.setCuisine("western");
@@ -143,9 +128,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantLocationNone() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setLocation("vancouver");
             r2.setLocation("richmond");
@@ -164,9 +146,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantLocationOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setLocation("vancouver");
             r2.setLocation("richmond");
@@ -185,9 +164,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantLocationMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setLocation("vancouver");
             r2.setLocation("richmond");
@@ -206,9 +182,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantPriceNone() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setPriceRange(1);
             r2.setPriceRange(2);
@@ -229,9 +202,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantPriceOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setPriceRange(1);
             r2.setPriceRange(2);
@@ -250,9 +220,6 @@ class RestaurantListTest {
 
     @Test
     void testSortRestaurantPriceMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setPriceRange(1);
             r2.setPriceRange(2);
@@ -271,8 +238,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-
         testRestaurantList.addRestaurant(r1);
 
         assertEquals(r1, testRestaurantList.returnRandomRestaurant());
@@ -280,10 +245,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
-
         testRestaurantList.addRestaurant(r1);
         testRestaurantList.addRestaurant(r2);
         testRestaurantList.addRestaurant(r3);
@@ -299,9 +260,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantCuisineOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setCuisine("vietnamese");
             r2.setCuisine("western");
@@ -319,9 +277,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantCuisineMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setCuisine("chinese");
             r2.setCuisine("western");
@@ -345,9 +300,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantLocationOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setLocation("vancouver");
             r2.setLocation("richmond");
@@ -365,9 +317,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantLocationMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setLocation("vancouver");
             r2.setLocation("vancouver");
@@ -392,9 +341,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantPriceOne() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setPriceRange(1);
             r2.setPriceRange(2);
@@ -412,9 +358,6 @@ class RestaurantListTest {
 
     @Test
     void testReturnRandomRestaurantPriceMany() {
-        Restaurant r1 = new Restaurant("Lotus");
-        Restaurant r2 = new Restaurant("Cactus Club Cafe");
-        Restaurant r3 = new Restaurant("Pearl Castle");
         try {
             r1.setPriceRange(1);
             r2.setPriceRange(2);

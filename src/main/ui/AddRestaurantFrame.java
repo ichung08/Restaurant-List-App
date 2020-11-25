@@ -115,8 +115,8 @@ public class AddRestaurantFrame {
         addRestaurant.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Restaurant r = new Restaurant(nameField.getText());
                 try {
+                    Restaurant r = new Restaurant(nameField.getText());
                     r.setAddress(addressField.getText());
                     r.setRating(Integer.parseInt(ratingField.getText()));
                     r.setDescription(descriptionField.getText());

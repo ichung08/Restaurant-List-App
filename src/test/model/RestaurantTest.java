@@ -13,12 +13,26 @@ class RestaurantTest {
 
     @BeforeEach
     void runBefore() {
-        testRestaurant = new Restaurant("McDonald's");
+        try {
+            testRestaurant = new Restaurant("McDonald's");
+        } catch (NonZeroLengthException e) {
+            fail("Exception should not have been thrown");
+        }
     }
 
     @Test
     void testConstructor() {
         assertEquals("McDonald's", testRestaurant.getName());
+    }
+
+    @Test
+    void testConstructorFail() {
+        try {
+            Restaurant r = new Restaurant("");
+            fail("Exception should have been caught");
+        } catch (NonZeroLengthException e) {
+            // Expected
+        }
     }
 
     @Test
