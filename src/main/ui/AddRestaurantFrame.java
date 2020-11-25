@@ -133,6 +133,8 @@ public class AddRestaurantFrame {
                     JOptionPane.showMessageDialog(null, "Error: Enter an integer between 1 and 4");
                 } catch (RatingException e1) {
                     JOptionPane.showMessageDialog(null, "Error: Enter an integer between 1 and 5");
+                } catch (NumberFormatException e1) {
+                    JOptionPane.showMessageDialog(null, "Error: Enter an integer");
                 }
             }
         });

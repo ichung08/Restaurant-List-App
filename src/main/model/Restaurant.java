@@ -92,7 +92,7 @@ public class Restaurant implements Writable {
              otherwise, sets restaurant rating to rating
      */
     public void setRating(int rating) throws RatingException {
-        if (rating < 1 || rating > 5 || Integer.toString(rating).length() == 0) {
+        if (rating < 1 || rating > 5) {
             throw new RatingException();
         }
         this.rating = rating;
@@ -128,7 +128,7 @@ public class Restaurant implements Writable {
              otherwise, sets restaurant priceRange to priceRange
      */
     public void setPriceRange(int priceRange) throws PriceRangeException {
-        if (priceRange < 1 || priceRange > 4 || Integer.toString(priceRange).length() == 0) {
+        if (priceRange < 1 || priceRange > 4) {
             throw new PriceRangeException();
         }
         this.priceRange = priceRange;
