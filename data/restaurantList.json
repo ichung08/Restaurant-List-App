@@ -1,12 +1,12 @@
 {
     "name": "My Restaurant List",
     "restaurants": [{
-        "address": "123",
-        "name": "yum",
+        "address": "a",
+        "name": "a",
         "rating": 1,
-        "description": "okok",
-        "cuisine": "chinese",
-        "location": "van",
-        "price range": 2
+        "description": "a",
+        "cuisine": "a",
+        "location": "a",
+        "price range": 1
     }]
 }

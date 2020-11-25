@@ -31,6 +31,7 @@ public class AddRestaurantFrame {
     private JLabel location;
     private JLabel priceRange;
     private RestaurantListGUI restaurantListGUI;
+    private Restaurant restaurant;
 
 
     // MODIFIES: this
@@ -116,19 +117,12 @@ public class AddRestaurantFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Restaurant r = new Restaurant(nameField.getText());
-                    r.setAddress(addressField.getText());
-                    r.setRating(Integer.parseInt(ratingField.getText()));
-                    r.setDescription(descriptionField.getText());
-                    r.setCuisine(cuisineField.getText());
-                    r.setLocation(locationField.getText());
-                    r.setPriceRange(Integer.parseInt(priceRangeField.getText()));
-
-                    restaurantListGUI.restaurantList.addRestaurant(r);
+                    setAddRestaurantString();
+                    restaurant.setRating(Integer.parseInt(ratingField.getText()));
+                    restaurant.setPriceRange(Integer.parseInt(priceRangeField.getText()));
+                    restaurantListGUI.restaurantList.addRestaurant(restaurant);
 
                     clearRestaurantText();
-                } catch (NonZeroLengthException e1) {
-                    JOptionPane.showMessageDialog(null, "Error: Enter a non-zero length string");
                 } catch (PriceRangeException e1) {
                     JOptionPane.showMessageDialog(null, "Error: Enter an integer between 1 and 4");
                 } catch (RatingException e1) {
@@ -138,6 +132,22 @@ public class AddRestaurantFrame {
                 }
             }
         });
+    }
+
+    /*
+    MODIFIES: this
+    EFFECTS: sets Restaurant string fields
+     */
+    private void setAddRestaurantString() {
+        try {
+            restaurant = new Restaurant(nameField.getText());
+            restaurant.setAddress(addressField.getText());
+            restaurant.setDescription(descriptionField.getText());
+            restaurant.setCuisine(cuisineField.getText());
+            restaurant.setLocation(locationField.getText());
+        } catch (NonZeroLengthException e1) {
+            JOptionPane.showMessageDialog(null, "Error: Enter a non-zero length string");
+        }
     }
 
     /*
